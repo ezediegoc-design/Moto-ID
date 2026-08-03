@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MOTO-ID SOS | Ficha de Emergencia</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #0D1117;
+      color: #C9D1D9;
+      display: flex;
+      justify-content: center;
+      padding: 12px;
+    }
+    .container {
+      width: 100%;
+      max-width: 400px;
+      background: #161B22;
+      border: 1px solid #30363D;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    }
+    /* Banner de Alerta */
+    .banner-emergency {
+      background: #DC2626;
+      color: #FFFFFF;
+      text-align: center;
+      font-weight: 800;
+      font-size: 13px;
+      padding: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    /* Encabezado Piloto */
+    .profile-header {
+      text-align: center;
+      padding: 20px 15px 10px;
+    }
+    .avatar {
+      width: 85px;
+      height: 85px;
+      border-radius: 50%;
+      border: 3px solid #F59E0B;
+      object-fit: cover;
+      margin-bottom: 8px;
+    }
+    .pilot-name {
+      font-size: 22px;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+    .pilot-handle {
+      font-size: 13px;
+      color: #8B949E;
+      margin-top: 2px;
+    }
+    /* Botón SOS */
+    .btn-sos {
+      display: block;
+      background: #DC2626;
+      color: #FFFFFF;
+      text-decoration: none;
+      text-align: center;
+      font-weight: 800;
+      font-size: 15px;
+      padding: 14px;
+      border-radius: 10px;
+      margin: 15px;
+      box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4);
+      text-transform: uppercase;
+    }
+    .btn-sos:active { transform: scale(0.98); }
+    
+    /* Secciones de Datos */
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #8B949E;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 12px 15px 4px;
+      background: #0D1117;
+      border-top: 1px solid #21262D;
+      border-bottom: 1px solid #21262D;
+    }
+    .info-group { padding: 5px 15px; }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #21262D;
+      font-size: 14px;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .label { color: #8B949E; }
+    .value { font-weight: 700; color: #F0F6FC; text-align: right; }
+    .blood-highlight { color: #EF4444; font-size: 16px; font-weight: 900; }
+    
+    /* Footer / Marca */
+    .footer {
+      text-align: center;
+      font-size: 10px;
+      color: #484F58;
+      padding: 15px;
+      border-top: 1px solid #21262D;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Banner de Emergencia -->
+  <div class="banner-emergency">
+    ⚠️ Ficha Médica y Contacto SOS
+  </div>
+
+  <!-- Foto y Perfil -->
+  <div class="profile-header">
+    <!-- Reemplazar con URL de imagen del cliente -->
+    <img src="https://via.placeholder.com/150" alt="Foto Piloto" class="avatar">
+    <h1 class="pilot-name">DIEGO CABRERA</h1>
+    <p class="pilot-handle">@diego_rider_ba</p>
+  </div>
+
+  <!-- Botón de Acción Inmediata (Llama directo) -->
+  <!-- Reemplazar el número con el del contacto de emergencia -->
+  <a href="tel:+5491112345678" class="btn-sos">
+    📞 Llamar Contacto SOS (Mamá)
+  </a>
+
+  <!-- Datos Médicos Críticos -->
+  <div class="section-title">Información Médica Crítica</div>
+  <div class="info-group">
+    <div class="info-row">
+      <span class="label">Grupo Sanguíneo</span>
+      <span class="value blood-highlight">O POSITIVO (O+)</span>
+    </div>
+    <div class="info-row">
+      <span class="label">Alergias</span>
+      <span class="value">Penicilina / Sin alergias</span>
+    </div>
+    <div class="info-row">
+      <span class="label">Condición Médica</span>
+      <span class="value">Asmático (Usa Salbutamol)</span>
+    </div>
+    <div class="info-row">
+      <span class="label">Obra Social / Prepaga</span>
+      <span class="value">OSDE (N° 45129883)</span>
+    </div>
+  </div>
+
+  <!-- Datos del Vehículo -->
+  <div class="section-title">Ficha de la Moto</div>
+  <div class="info-group">
+    <div class="info-row">
+      <span class="label">Modelo</span>
+      <span class="value">Honda CB 250 Twister</span>
+    </div>
+    <div class="info-row">
+      <span class="label">Dominio / Patente</span>
+      <span class="value">A123BCD</span>
+    </div>
+  </div>
+
+  <!-- Pie con tu marca -->
+  <div class="footer">
+    MOTO-ID SOS • Sistema de Identificación para Motociclistas
+  </div>
+</div>
+
+</body>
+</html>
