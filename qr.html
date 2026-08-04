@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>QR Moto-ID</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 20px; }
+    .grid { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
+    .card { border: 1px solid #ccc; padding: 10px; border-radius: 8px; width: 130px; }
+    .card img { width: 100%; }
+    p { margin: 5px 0 0; font-weight: bold; }
+    @media print { button { display: none; } }
+  </style>
+</head>
+<body>
+  <h1>Lista de QRs Moto-ID (1 al 180)</h1>
+  <button onclick="window.print()" style="padding: 10px 20px; font-size: 16px; margin-bottom: 20px;">Guardar como PDF / Imprimir</button>
+  <div class="grid" id="contenedor"></div>
+
+  <script>
+    const contenedor = document.getElementById('contenedor');
+    for (let i = 1; i <= 180; i++) {
+      const id = String(i).padStart(3, '0');
+      const url = `https://ezediegoc-design.github.io/Moto-ID/?id=${id}`;
+      const qrApi = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(url)}`;
+      contenedor.innerHTML += `<div class="card"><img src="${qrApi}"><p>ID: ${id}</p></div>`;
+    }
+  </script>
+</body>
+</html>
