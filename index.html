@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MOTO-ID SOS | Ficha de Emergencia</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: #0d1117; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; justify-content: center; padding: 20px 10px; }
+    .container { max-width: 400px; width: 100%; background: #161b22; border-radius: 16px; padding: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); border: 1px solid #30363d; }
+    .banner-emergency { background: #dc3545; color: white; text-align: center; font-weight: bold; padding: 8px; border-radius: 8px; font-size: 14px; margin-bottom: 20px; }
+    .profile-header { text-align: center; margin-bottom: 15px; }
+    .avatar { width: 90px; height: 90px; border-radius: 50%; border: 3px solid #fda033; object-fit: cover; margin-bottom: 10px; }
+    .profile-name { font-size: 22px; font-weight: 800; color: #ffffff; text-transform: uppercase; }
+    .profile-sub { font-size: 14px; color: #8b949e; margin-top: 2px; }
+    .btn-sos { display: block; background: #fda033; color: #ffffff; text-align: center; text-decoration: none; font-weight: 800; font-size: 15px; padding: 14px; border-radius: 10px; margin: 15px 0; box-shadow: 0 4px 12px rgba(218, 54, 51, 0.4); }
+    .section-title { background: #21262d; padding: 8px 15px; font-size: 11px; font-weight: 700; letter-spacing: 1px; color: #8b949e; text-transform: uppercase; border-top: 1px solid #30363d; border-bottom: 1px solid #30363d; margin: 20px -20px 10px -20px; }
+    .info-group { padding: 0 5px; }
+    .info-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #21262d; font-size: 14px; }
+    .info-row:last-child { border-bottom: none; }
+    .label { color: #8b949e; }
+    .value { font-weight: 600; color: #ffffff; text-align: right; }
+    .alert-text { color: #f85149; font-weight: 800; }
+    .footer { text-align: center; padding: 15px 0 0 0; font-size: 11px; color: #484f58; }
+    .not-active { text-align: center; padding: 40px 10px; }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="app">
+    <div style="text-align: center; color: #8b949e;">Cargando ficha...</div>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const idCliente = urlParams.get('id');
+
+    fetch('datos.json')
+      .then(res => res.json())
+      .then(datos => {
+        const cliente = datos[idCliente];
+        const app = document.getElementById('app');
+
+        if (cliente && cliente.activado) {
+          app.innerHTML = `
+            <div class="banner-emergency">⚠️ FICHA MÉDICA Y CONTACTO SOS</div>
+            <div class="profile-header">
+              <img src="${cliente.foto}" class="avatar" alt="Foto de ${cliente.nombre}">
+              <div class="profile-name">${cliente.nombre}</div>
+              <div class="profile-sub">${cliente.subtitulo}</div>
+            </div>
+            <a href="tel:${cliente.tel_link}" class="btn-sos">📞 LLAMAR CONTACTO SOS (${cliente.telefono_sos})</a>
+
+            <div class="section-title">Información Médica Crítica</div>
+            <div class="info-group">
+              <div class="info-row"><span class="label">Grupo Sanguíneo</span><span class="value alert-text">${cliente.sangre}</span></div>
+              <div class="info-row"><span class="label">Alergias</span><span class="value">${cliente.alergias}</span></div>
+              <div class="info-row"><span class="label">Condición Médica</span><span class="value">${cliente.condicion}</span></div>
+              <div class="info-row"><span class="label">Obra Social / Prepaga</span><span class="value">${cliente.obra_social}</span></div>
+            </div>
+
+            <div class="section-title">Ficha de la Moto</div>
+            <div class="info-group">
+              <div class="info-row"><span class="label">Modelo</span><span class="value">${cliente.moto}</span></div>
+              <div class="info-row"><span class="label">Dominio / Patente</span><span class="value">${cliente.patente}</span></div>
+            </div>
+
+            <div class="footer">MOTO-ID SOS • Sistema de Identificación para Motociclistas</div>
+          `;
+        } else {
+          app.innerHTML = `
+            <div class="not-active">
+              <h2>⚠️ MOTO-ID SOS</h2>
+              <p style="color: #8b949e; margin-top: 15px;">Este código QR / chip NFC todavía <strong>no ha sido activado</strong>.</p>
+              <p style="color: #8b949e; font-size: 13px; margin-top: 20px;">Si recién adquiriste este producto, ponete en contacto para configurar tus datos de emergencia.</p>
+            </div>
+          `;
+        }
+      })
+      .catch(() => {
+        document.getElementById('app').innerHTML = `<div class="not-active"><p>Error al cargar la información.</p></div>`;
+      });
+  </script>
+</body>
+</html>
